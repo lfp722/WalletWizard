@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.walletwizard.model.Balance;
 import com.spring.walletwizard.model.Expense;
+import com.spring.walletwizard.model.FinancialGoal;
 import com.spring.walletwizard.model.Income;
 import com.spring.walletwizard.model.User;
 
@@ -39,4 +40,10 @@ public interface WalletWizardService {
 	Balance getBalanceByUserId(long id) throws Exception;
 
 	void setBalanceAmount(Integer amount, long id);
+
+	List<FinancialGoal> getFinancialGoalsByUserId(long id);
+
+	void addFinancialGoal(FinancialGoal financialGoal);
+
+	void deteleFinancialGoalById(long id);
 }

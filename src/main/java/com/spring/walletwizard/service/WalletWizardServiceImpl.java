@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.spring.walletwizard.dao.BalanceRepository;
 import com.spring.walletwizard.dao.ExpenseRepository;
+import com.spring.walletwizard.dao.FinancialGoalRepository;
 import com.spring.walletwizard.dao.IncomeRepository;
 import com.spring.walletwizard.dao.UsersRepository;
 import com.spring.walletwizard.model.Balance;
 import com.spring.walletwizard.model.Expense;
+import com.spring.walletwizard.model.FinancialGoal;
 import com.spring.walletwizard.model.Income;
 import com.spring.walletwizard.model.User;
 
@@ -32,6 +34,9 @@ public class WalletWizardServiceImpl implements WalletWizardService {
 
 	@Autowired
 	BalanceRepository balanceRepository;
+
+	@Autowired
+	FinancialGoalRepository financialGoalRepository;
 
 	@Override
 	public void addUser(User user) {
@@ -162,5 +167,27 @@ public class WalletWizardServiceImpl implements WalletWizardService {
 			}
 		}
 		return;
+	}
+
+	@Override
+	public List<FinancialGoal> getFinancialGoalsByUserId(long id) {
+		List<FinancialGoal> fgs = financialGoalRepository.findAll();
+		List<FinancialGoal> ret = new ArrayList<FinancialGoal>();
+		for (FinancialGoal fg : fgs) {
+			if (fg.getUser().getUserId() == id) {
+				ret.add(fg);
+			}
+		}
+		return ret;
+	}
+
+	@Override
+	public void addFinancialGoal(FinancialGoal financialGoal) {
+		financialGoalRepository.save(financialGoal);
+	}
+
+	@Override
+	public void deteleFinancialGoalById(long id) {
+		financialGoalRepository.deleteById(id);
 	}
 }

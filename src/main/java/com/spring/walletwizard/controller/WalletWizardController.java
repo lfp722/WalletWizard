@@ -21,6 +21,7 @@ import com.spring.walletwizard.dao.BalanceRepository;
 import com.spring.walletwizard.dao.UsersRepository;
 import com.spring.walletwizard.model.Balance;
 import com.spring.walletwizard.model.Expense;
+import com.spring.walletwizard.model.FinancialGoal;
 import com.spring.walletwizard.model.Income;
 import com.spring.walletwizard.model.User;
 import com.spring.walletwizard.service.WalletWizardServiceImpl;
@@ -199,6 +200,33 @@ public class WalletWizardController {
 		String amountStr = (String) payload.get("amount");
 		Integer amount = Integer.parseInt(amountStr);
 		walletWizardServiceImpl.setBalanceAmount(amount, user.getUserId());
+		Map<String, Object> responseMap = new HashMap<>();
+		return ResponseEntity.ok(responseMap);
+	}
+
+	@GetMapping("/getFinancialGoalsbyToken/{token}")
+	@CrossOrigin(origins = "*")
+	public ResponseEntity<List<FinancialGoal>> getFinancialGoals(HttpServletRequest request,
+			HttpServletResponse response, @PathVariable String token) throws Exception {
+		User u = walletWizardServiceImpl.getUserByToken(token);
+		List<FinancialGoal> ret = walletWizardServiceImpl.getFinancialGoalsByUserId(u.getUserId());
+		return ResponseEntity.ok(ret);
+	}
+
+	@PostMapping("/addFinancialGoal/{token}")
+	@CrossOrigin(origins = "*")
+	public ResponseEntity<Map<String, Object>> addFinancialGoal(HttpServletRequest request,
+			HttpServletResponse response, @RequestBody Map<String, Object> payload, @PathVariable String token)
+			throws Exception {
+		User user = walletWizardServiceImpl.getUserByToken(token);
+		String amountStr = (String) payload.get("targetAmount");
+		Integer targetAmount = Integer.parseInt(amountStr);
+		String title = (String) payload.get("title");
+		String dueDateString = (String) payload.get("dueDate");
+		LocalDate dueDate = LocalDate.parse(dueDateString);
+		Date sqlDate = Date.valueOf(dueDate);
+		FinancialGoal fg = new FinancialGoal(user, targetAmount, title, sqlDate);
+		walletWizardServiceImpl.addFinancialGoal(fg);
 		Map<String, Object> responseMap = new HashMap<>();
 		return ResponseEntity.ok(responseMap);
 	}
