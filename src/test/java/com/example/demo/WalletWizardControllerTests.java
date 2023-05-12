@@ -34,6 +34,10 @@ import com.spring.walletwizard.model.Income;
 import com.spring.walletwizard.model.User;
 import com.spring.walletwizard.service.WalletWizardServiceImpl;
 
+/*
+ * Have not tested the funtionalities that delete the whole table data.
+ */
+
 @SpringBootTest(classes = WalletWizardApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class WalletWizardControllerTests {
 	@Value(value = "${local.server.port}")
