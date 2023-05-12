@@ -1,0 +1,59 @@
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-content {
+  margin-right: 1rem;
+}
+
+.timeline-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-description {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.timeline-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.timeline-month {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.timeline-day {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.timeline-year {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}

@@ -1,0 +1,22 @@
+.body {
+	size: 70vw;
+}
+
+.home-container {
+	background-color: white;
+}
+
+.home-header {
+  font-size: 5vw;
+  font-weight: 700;
+  margin-bottom: 2vw;
+  text-align: left;
+}
+
+.home-paragraph {
+  font-size: 1.8vw;
+  line-height: 1.5;
+  margin-bottom: 3vw;
+  text-align: left;
+  max-width: 80vw;
+}
